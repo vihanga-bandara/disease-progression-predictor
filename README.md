@@ -28,3 +28,14 @@ run gives the same RMSE.
 uv run ruff check .
 uv run pytest
 ```
+
+## Release
+
+Push a version tag. The release workflow trains the model, builds the Docker image, smoke-tests the
+running container, pushes the image to GHCR and publishes a GitHub release with the metrics and the
+changelog.
+
+```bash
+git tag v0.1
+git push origin v0.1
+```
