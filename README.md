@@ -1,5 +1,7 @@
 # Disease progression predictor
 
+![CI](https://github.com/vihanga-bandara/disease-progression-predictor/actions/workflows/ci.yml/badge.svg)
+
 Predicts a patient's short-term diabetes progression so a virtual clinic can sort its follow-up
 calls by risk. Trained on the scikit-learn diabetes dataset.
 
