@@ -34,8 +34,10 @@ curl http://localhost:8000/health
 
 curl -X POST http://localhost:8000/predict -H "Content-Type: application/json" \
   -d '{"age": 0.02, "sex": -0.044, "bmi": 0.06, "bp": -0.03, "s1": -0.02, "s2": 0.03, "s3": -0.02, "s4": 0.02, "s5": 0.02, "s6": -0.001}'
-# {"prediction":235.9496372217627}
+# {"prediction":206.24632515432327,"high_risk":true}
 ```
+
+`high_risk` is true when the prediction is 200 or more.
 
 All ten features are required numbers. A missing or invalid one gives HTTP 422 with a JSON body
 listing each problem, its location and a message:
@@ -74,8 +76,8 @@ Smoke test the running container:
 Released images are on GHCR and run with:
 
 ```bash
-docker pull ghcr.io/vihanga-bandara/disease-progression-predictor:v0.1
-docker run -it -p 80:80 ghcr.io/vihanga-bandara/disease-progression-predictor:v0.1
+docker pull ghcr.io/vihanga-bandara/disease-progression-predictor:v0.2
+docker run -it -p 80:80 ghcr.io/vihanga-bandara/disease-progression-predictor:v0.2
 ```
 
 ## Release
@@ -85,6 +87,6 @@ running container, pushes the image to GHCR and publishes a GitHub release with 
 changelog.
 
 ```bash
-git tag v0.1
-git push origin v0.1
+git tag v0.2
+git push origin v0.2
 ```
