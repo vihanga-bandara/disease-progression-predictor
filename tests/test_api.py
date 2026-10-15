@@ -51,6 +51,7 @@ def test_prediction_is_numeric(monkeypatch, tmp_path):
     assert response.status_code == 200
     assert isinstance(response.json()["prediction"], (int, float))
     assert np.isfinite(response.json()["prediction"])
+    assert isinstance(response.json()["high_risk"], bool)
 
 
 def test_missing_feature_returns_422_json(monkeypatch, tmp_path):

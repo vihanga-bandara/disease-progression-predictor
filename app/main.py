@@ -9,6 +9,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
 from app.schema import FEATURE_NAMES, PredictionRequest
+from app.train import HIGH_RISK_THRESHOLD
 
 MODEL_PATH = Path(os.getenv("MODEL_PATH", "artifacts/model.joblib"))
 MODEL_VERSION = os.getenv("MODEL_VERSION", "dev")
@@ -52,9 +53,9 @@ def health() -> dict[str, str]:
 
 
 @app.post("/predict")
-def predict(payload: PredictionRequest) -> dict[str, float]:
+def predict(payload: PredictionRequest) -> dict:
     values = pd.DataFrame([payload.ordered_values()], columns=FEATURE_NAMES, dtype=float)
     prediction = float(model.predict(values)[0])
     if not np.isfinite(prediction):
         raise RuntimeError("Model returned a non-finite prediction")
-    return {"prediction": prediction}
+    return {"prediction": prediction, "high_risk": prediction >= HIGH_RISK_THRESHOLD}
