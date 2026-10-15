@@ -3,13 +3,16 @@ name = "disease-progression-predictor"
 version = "0.1.0"
 requires-python = ">=3.12"
 dependencies = [
+    "fastapi>=0.143.1",
     "joblib>=1.6.0",
     "pandas>=3.0.6",
     "scikit-learn>=1.9.1",
+    "uvicorn>=0.54.0",
 ]
 
 [dependency-groups]
 dev = [
+    "httpx2>=2.13.1",
     "pytest>=9.1.1",
     "ruff>=0.17.0",
 ]
