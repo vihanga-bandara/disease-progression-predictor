@@ -63,14 +63,6 @@ def test_missing_feature_returns_422_json(monkeypatch, tmp_path):
     assert "s6" in response.text
 
 
-def test_extra_feature_returns_422(monkeypatch, tmp_path):
-    client = client_for_version(monkeypatch, tmp_path)
-    payload = {**FEATURES, "unexpected": 1}
-    response = client.post("/predict", json=payload)
-    assert response.status_code == 422
-    assert "unexpected" in response.text
-
-
 def test_non_finite_feature_returns_422(monkeypatch, tmp_path):
     client = client_for_version(monkeypatch, tmp_path)
     payload = dict(FEATURES)

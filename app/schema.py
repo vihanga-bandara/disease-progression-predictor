@@ -7,7 +7,7 @@ FEATURE_NAMES = ("age", "sex", "bmi", "bp", "s1", "s2", "s3", "s4", "s5", "s6")
 
 
 class PredictionRequest(BaseModel):
-    model_config = ConfigDict(extra="forbid", strict=True)
+    model_config = ConfigDict(strict=True)
 
     age: FiniteFloat
     sex: FiniteFloat

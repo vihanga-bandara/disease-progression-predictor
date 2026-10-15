@@ -11,13 +11,13 @@ from fastapi.responses import JSONResponse
 from app.schema import FEATURE_NAMES, PredictionRequest
 
 MODEL_PATH = Path(os.getenv("MODEL_PATH", "artifacts/model.joblib"))
-MODEL_VERSION = os.getenv("MODEL_VERSION", "v0.1")
+MODEL_VERSION = os.getenv("MODEL_VERSION", "dev")
 
 
 def load_model():
     if not MODEL_PATH.is_file():
         raise RuntimeError(
-            f"Model artifact not found at {MODEL_PATH}. Train it with scripts/train.py "
+            f"Model artifact not found at {MODEL_PATH}. Train it with python -m app.train "
             "or build the Docker image."
         )
     return joblib.load(MODEL_PATH)
