@@ -1,4 +1,4 @@
-FROM ghcr.io/astral-sh/uv:0.5.21 AS uv_bin
+FROM ghcr.io/astral-sh/uv:0.11.7 AS uv_bin
 FROM python:3.12-slim-bookworm AS builder
 
 ENV UV_COMPILE_BYTECODE=1 \
@@ -21,7 +21,7 @@ RUN if [ ! -f artifacts/model.joblib ]; then /app/.venv/bin/python -m app.train;
 # --- Runtime stage ---
 FROM python:3.12-slim-bookworm AS runtime
 
-ARG MODEL_VERSION=v0.1
+ARG MODEL_VERSION=dev
 
 ENV PYTHONUNBUFFERED=1 \
     PYTHONDONTWRITEBYTECODE=1 \
