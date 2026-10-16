@@ -58,7 +58,7 @@ uv run pytest
 Build the self-contained image:
 
 ```bash
-docker build --build-arg MODEL_VERSION=v0.1 -t disease-progression-predictor:latest .
+docker build --build-arg MODEL_VERSION=v0.2 -t disease-progression-predictor:latest .
 ```
 
 Run the container:
