@@ -11,12 +11,9 @@ COPY --from=uv_bin /uv /uvx /bin/
 COPY pyproject.toml uv.lock ./
 RUN uv sync --frozen --no-dev --no-install-project
 
-# Copy application source code and artifacts
+# Copy application source code and train the model
 COPY app/ ./app/
-COPY artifacts/ ./artifacts/
-
-# Train model if not already present
-RUN if [ ! -f artifacts/model.joblib ]; then /app/.venv/bin/python -m app.train; fi
+RUN /app/.venv/bin/python -m app.train
 
 # --- Runtime stage ---
 FROM python:3.12-slim-bookworm AS runtime
